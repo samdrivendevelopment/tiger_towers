@@ -8,17 +8,21 @@ class BetterTestUI(object):
         return self.test_input_list.pop(0)
 
 def test_turn_norm():
+    state = {
+        'tower_list':[
+            ['3', '2', '1'],
+            [],
+            [],
+        ],
+        'moves': 0,
+    }
     game = TowerofHanioGame()
+    game.state = state
     game.ui = BetterTestUI()
     game.ui.test_input_list = ['0', '1']
     game.ui.test_output_list = []
-    game.tower_list = [
-        ['3', '2', '1'],
-        [],
-        [],
-    ]
     should_quit = game.turn()
-    tower_good = game.tower_list == [
+    tower_good = game.state['tower_list'] == [
         ['3', '2'],
         ['1'],
         [],
@@ -28,17 +32,21 @@ def test_turn_norm():
     return output_good and tower_good and (should_quit == False)
 
 def test_turn_st_quit():
+    state = {
+        'tower_list':[
+            ['3', '2', '1'],
+            [],
+            [],
+        ],
+        'moves': 0,
+    }
     game = TowerofHanioGame()
+    game.state = state
     game.ui = BetterTestUI()
     game.ui.test_input_list = ['q']
     game.ui.test_output_list = []
-    game.tower_list = [
-        ['3', '2', '1'],
-        [],
-        [],
-    ]
     should_quit = game.turn()
-    tower_good = game.tower_list == [
+    tower_good = game.state['tower_list'] == [
         ['3', '2', '1'],
         [],
         [],
@@ -49,17 +57,21 @@ def test_turn_st_quit():
 
 
 def test_turn_nd_quit():
+    state = {
+        'tower_list':[
+            ['3', '2', '1'],
+            [],
+            [],
+        ],
+        'moves': 0,
+    }
     game = TowerofHanioGame()
+    game.state = state
     game.ui = BetterTestUI()
     game.ui.test_input_list = ['0', 'q']
     game.ui.test_output_list = []
-    game.tower_list = [
-        ['3', '2', '1'],
-        [],
-        [],
-    ]
     should_quit = game.turn()
-    tower_good = game.tower_list == [
+    tower_good = game.state['tower_list'] == [
         ['3', '2', '1'],
         [],
         [],
@@ -69,17 +81,21 @@ def test_turn_nd_quit():
     return output_good and tower_good and (should_quit == True)
 
 def test_turn_st_invalid_input():
+    state = {
+        'tower_list':[
+            ['3', '2', '1'],
+            [],
+            [],
+        ],
+        'moves': 0,
+    }
     game = TowerofHanioGame()
+    game.state = state
     game.ui = BetterTestUI()
     game.ui.test_input_list = ['t']
     game.ui.test_output_list = []
-    game.tower_list = [
-        ['3', '2', '1'],
-        [],
-        [],
-    ]
     should_quit = game.turn()
-    tower_good = game.tower_list == [
+    tower_good = game.state['tower_list'] == [
         ['3', '2', '1'],
         [],
         [],
@@ -90,17 +106,21 @@ def test_turn_st_invalid_input():
 
 
 def test_turn_nd_invalid_input():
+    state = {
+        'tower_list':[
+            ['3', '2', '1'],
+            [],
+            [],
+        ],
+        'moves': 0,
+    }
     game = TowerofHanioGame()
+    game.state = state
     game.ui = BetterTestUI()
     game.ui.test_input_list = ['0', 't']
     game.ui.test_output_list = []
-    game.tower_list = [
-        ['3', '2', '1'],
-        [],
-        [],
-    ]
     should_quit = game.turn()
-    tower_good = game.tower_list == [
+    tower_good = game.state['tower_list'] == [
         ['3', '2', '1'],
         [],
         [],
@@ -110,17 +130,21 @@ def test_turn_nd_invalid_input():
     return output_good and tower_good and (should_quit == False)
 
 def test_turn_valid_move():
+    state = {
+        'tower_list':[
+            ['3', '2', '1'],
+            [],
+            [],
+        ],
+        'moves': 0,
+    }
     game = TowerofHanioGame()
+    game.state = state
     game.ui = BetterTestUI()
     game.ui.test_input_list = ['0', '1']
     game.ui.test_output_list = []
-    game.tower_list = [
-        ['3', '2', '1'],
-        [],
-        [],
-    ]
     should_quit = game.turn()
-    tower_good = game.tower_list == [
+    tower_good = game.state['tower_list'] == [
         ['3', '2'],
         ['1'],
         [],
@@ -130,17 +154,21 @@ def test_turn_valid_move():
     return output_good and tower_good and (should_quit == False)
 
 def test_turn_invalid_move():
+    state = {
+        'tower_list':[
+            ['3', '2'],
+            ['1'],
+            [],
+        ],
+        'moves': 0,
+    }
     game = TowerofHanioGame()
+    game.state = state
     game.ui = BetterTestUI()
     game.ui.test_input_list = ['0', '1']
     game.ui.test_output_list = []
-    game.tower_list = [
-        ['3', '2'],
-        ['1'],
-        [],
-    ]
     should_quit = game.turn()
-    tower_good = game.tower_list == [
+    tower_good = game.state['tower_list'] == [
         ['3', '2'],
         ['1'],
         [],
@@ -150,17 +178,21 @@ def test_turn_invalid_move():
     return output_good and tower_good and (should_quit == False)
 
 def test_turn_win():
+    state = {
+        'tower_list':[
+            ['1'],
+            [],
+            [],
+        ],
+        'moves': 0,
+    }
     game = TowerofHanioGame()
+    game.state = state
     game.ui = BetterTestUI()
     game.ui.test_input_list = ['0', '2']
     game.ui.test_output_list = []
-    game.tower_list = [
-        ['1'],
-        [],
-        [],
-    ]
     should_quit = game.turn()
-    tower_good = game.tower_list == [
+    tower_good = game.state['tower_list'] == [
         [],
         [],
         ['1'],
@@ -171,17 +203,21 @@ def test_turn_win():
 
 
 def test_turn_not_win():
+    state = {
+        'tower_list':[
+            ['1'],
+            [],
+            [],
+        ],
+        'moves': 0,
+    }
     game = TowerofHanioGame()
+    game.state = state
     game.ui = BetterTestUI()
     game.ui.test_input_list = ['0', '1']
     game.ui.test_output_list = []
-    game.tower_list = [
-        ['1'],
-        [],
-        [],
-    ]
     should_quit = game.turn()
-    tower_good = game.tower_list == [
+    tower_good = game.state['tower_list'] == [
         [],
         ['1'],
         [],
