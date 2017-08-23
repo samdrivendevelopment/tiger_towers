@@ -7,13 +7,18 @@ start main for test file and other file. Make a fuction that makes and prints th
 
 Step Two
 
-Make the disk move and test it
+Make the disk move and test it, manually write in a winning game.
 
 Step Three
 
-make a win case, make a quit and a invaild
+make user input work, write a read in ui, make turn, and test everything 
 
-Step four
+Step Four
 
-optional I want to make three disks and make sure they fall on each other properly
+make a loop, make a win case, make a quit and a invaild_char/invalid_space
+
+Step Five
+
+make a move counter, then break everything and make a state
+
 
