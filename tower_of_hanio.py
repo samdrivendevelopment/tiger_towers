@@ -1,3 +1,7 @@
+#!/usr/bin/python
+
+import json
+import sys
 
 class ShellUI(object):
     def write(self, text):
@@ -47,7 +51,8 @@ def has_won(tower_list):
 
 class TowerofHanioGame(object):
     def turn(self):
-        print_towers(self.tower_list, self.ui)
+        get = self.state
+        print_towers(get['tower_list'], self.ui)
         from_index = get_tower_index(self.ui)
         if should_quit(from_index):
             return True
@@ -58,47 +63,24 @@ class TowerofHanioGame(object):
             return True
         if is_invalid_input(to_index):
             return False
-        if is_invalid_move(self.tower_list, int(from_index), int(to_index)):
+        if is_invalid_move(get['tower_list'], int(from_index), int(to_index)):
             return False
-        move_disk(self.tower_list, int(from_index), int(to_index))
-        if has_won(self.tower_list):
-            print_towers(self.tower_list, self.ui)
+        move_disk(get['tower_list'], int(from_index), int(to_index))
+        if has_won(get['tower_list']):
+            print_towers(get['tower_list'], self.ui)
             return True
-        print_towers(self.tower_list, self.ui)
+        print_towers(get['tower_list'], self.ui)
         return False
 
-
-def demo():
-    tower_list = [
-        ['3', '2', '1'],
-        [],
-        [],
-    ]
-    ui = ShellUI()
-    print_towers(tower_list, ui)
-    move_disk(tower_list, 0, 2)
-    print_towers(tower_list, ui)
-    move_disk(tower_list, 0, 1)
-    print_towers(tower_list, ui)
-    move_disk(tower_list, 2, 1)
-    print_towers(tower_list, ui)
-    move_disk(tower_list, 0, 2)
-    print_towers(tower_list, ui)
-    move_disk(tower_list, 1, 0)
-    print_towers(tower_list, ui)
-    move_disk(tower_list, 1, 2)
-    print_towers(tower_list, ui)
-    move_disk(tower_list, 0, 2)
-    print_towers(tower_list, ui)
-
 def main():
+    filename = sys.argv[1]
+    f = open(filename)
+    state = json.load(f)
+    f.close()
     game = TowerofHanioGame()
     game.ui = ShellUI()
-    game.tower_list = [
-        ['3', '2', '1'],
-        [],
-        [],
-    ]
+    game.state = state
+
     for i in range(999):
         if game.turn():
             break

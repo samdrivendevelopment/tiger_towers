@@ -19,6 +19,10 @@ make a loop, make a win case, make a quit and a invaild_char/invalid_space
 
 Step Five
 
-make a move counter, then break everything and make a state
+break everything and make a state, import json and put state in a json file, also put a hash bang line
+
+Step Six
+
+make a counter
 
 
